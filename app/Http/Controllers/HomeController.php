@@ -16,7 +16,19 @@ class HomeController extends Controller
 
     // Start the query for events that are today or upcoming
     $query = Event::whereDate('start_date', '>=', $today);
+    $categoryId = $request->input('category');
 
+    // Get categories for the filter dropdown
+    $categories = Category::all();
+
+    // Get events based on the selected category
+    $eventsQuery = Event::query();
+
+    if ($categoryId) {
+      $eventsQuery->where('category_id', $categoryId);
+    }
+
+    $events = $eventsQuery->get();
     // Filter by category if selected
     if ($request->category) {
       $query->where('category_id', $request->category);

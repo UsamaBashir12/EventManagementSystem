@@ -1,5 +1,5 @@
   {{-- top-bar --}}
-  <div class="container-fluid">
+  {{-- <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 d-flex justify-content-between border-bottom p-2">
         <p class="m-0 p-0">Usamab@mudsoft.tech</p>
@@ -44,7 +44,7 @@
         </header>
       </div>
     </div>
-  </div>
+  </div> --}}
 
   {{-- navbar --}}
   <nav class="navbar navbar-expand-lg navbar-light bg-light">

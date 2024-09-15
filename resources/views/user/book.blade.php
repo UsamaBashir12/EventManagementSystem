@@ -16,8 +16,12 @@
 
     <div class="card shadow-sm">
       <div class="card-body">
-        <form action="{{ route('events.book', ['event' => $event->id]) }}" method="POST">
+        <form id="bookingForm" action="{{ route('events.book', ['event' => $event->id]) }}" method="POST"
+          onsubmit="return validateForm()">
           @csrf
+
+          <!-- Error Message Container -->
+          <div id="error-message" class="alert alert-danger d-none mb-3"></div>
 
           <!-- Free Tickets Field -->
           <div class="mb-3">
@@ -95,4 +99,28 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function validateForm() {
+      const freeQuantity = document.getElementById('free_quantity').value;
+      const normalQuantity = document.getElementById('normal_quantity').value;
+      const allQuantity = document.getElementById('all_quantity').value;
+      const businessQuantity = document.getElementById('business_quantity').value;
+      const firstQuantity = document.getElementById('first_quantity').value;
+
+      // Get the error message container
+      const errorMessageContainer = document.getElementById('error-message');
+
+      // Check if at least one ticket quantity is greater than zero
+      if (freeQuantity <= 0 && normalQuantity <= 0 && allQuantity <= 0 && businessQuantity <= 0 && firstQuantity <= 0) {
+        errorMessageContainer.textContent = 'Please select at least one ticket before booking.';
+        errorMessageContainer.classList.remove('d-none'); // Show the error message
+        return false; // Prevent form submission
+      }
+
+      // Hide the error message if validation passes
+      errorMessageContainer.classList.add('d-none');
+      return true; // Allow form submission
+    }
+  </script>
 @endsection
