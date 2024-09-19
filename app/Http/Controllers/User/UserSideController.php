@@ -20,7 +20,7 @@ class UserSideController extends Controller
 
     \Log::info("Today's Date: " . $today);
 
-    // Retrieve all events starting from today
+    // Retrieve all events start  ing from today
     $events = Event::whereDate('start_date', '>=', $today)
       ->get();
 
@@ -31,6 +31,24 @@ class UserSideController extends Controller
 
     return view('user.dashboard', compact('events', 'categories', 'organizers'));
   }
+
+  // UserSideController.php
+  public function showEventDetails($eventId)
+  {
+    // Retrieve the event by its ID
+    $event = Event::findOrFail($eventId);
+
+    // Convert start_date to a Carbon instance if it's a string
+    $event->start_date = \Carbon\Carbon::parse($event->start_date);
+
+    // Other logic
+    $organizer = $event->organizer; // Assuming relationship is defined
+    $bookings = Booking::where('event_id', $eventId)->get();
+
+    return view('user.event-details', compact('event', 'organizer', 'bookings'));
+  }
+
+
   public function showBookingForm($eventId)
   {
     // Get the event based on the ID passed in the route

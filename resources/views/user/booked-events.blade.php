@@ -5,15 +5,16 @@
     <div class="row justify-content-center">
       <div class="col-md-10">
         <!-- Navigation Section -->
-        <div class="mb-4 d-flex justify-content-between m-0 border border-1 border-black p-2 rounded-2">
+        <div
+          class="mb-4 d-flex justify-content-between align-items-center border border-2 border-primary p-3 rounded-3 shadow-sm">
           <div>
-            Back to user Dashboard
+            <span class="fw-bold">Back to User Dashboard</span>
           </div>
           <div>
-            <a href="{{ route('user.dashboard') }}" class="btn btn-info">GO
-            </a>
+            <a href="{{ route('user.dashboard') }}" class="btn btn-info">Go to Dashboard</a>
           </div>
         </div>
+
         <div class="card shadow-lg">
           <div class="card-header bg-primary text-white">
             <h3 class="mb-0">Your Booked Events</h3>
@@ -29,7 +30,7 @@
                 <table class="table table-bordered table-hover">
                   <thead class="thead-dark">
                     <tr>
-                      <th>Event Id</th>
+                      <th>Event ID</th>
                       <th>Date</th>
                       <th>Free Tickets</th>
                       <th>Normal Tickets</th>
@@ -42,14 +43,18 @@
                   <tbody>
                     @foreach ($bookedEvents as $booking)
                       <tr>
-                        <td>{{ $booking->event->id }}</td>
-                        <td>{{ \Carbon\Carbon::parse($booking->event->date)->format('d M, Y') }}</td>
+                        @if ($booking->event)
+                          <td>{{ $booking->event->id }}</td>
+                          <td>{{ \Carbon\Carbon::parse($booking->event->date)->format('d M, Y') }}</td>
+                        @else
+                          <td colspan="8" class="text-danger text-center">Event not available</td>
+                        @endif
                         <td>{{ $booking->free_quantity }}</td>
                         <td>{{ $booking->normal_quantity }}</td>
                         <td>{{ $booking->all_quantity }}</td>
                         <td>{{ $booking->business_quantity }}</td>
                         <td>{{ $booking->first_quantity }}</td>
-                        <td class="text-success font-weight-bold">${{ number_format($booking->total_price, 2) }}</td>
+                        <td class="text-success fw-bold">${{ number_format($booking->total_price, 2) }}</td>
                       </tr>
                     @endforeach
                   </tbody>

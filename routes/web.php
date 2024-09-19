@@ -29,6 +29,9 @@ Route::get('/event-details', function () {
   return view('eventDetails');
 })->name('eventDetails');
 
+Route::get('/events/{event}', [UserSideController::class, 'showEventDetails'])->name('event.details');
+
+
 // Event page
 Route::get('/events', function () {
   return view('events');
