@@ -86,6 +86,8 @@
     <div class="pt-5"></div>
     <div class="pt-5"></div>
     <div class="pt-5"></div>
+    <div class="pt-5"></div>
+    <div class="pt-5"></div>
     {{-- Events Section --}}
     <div class="container mt-5">
       <h2 class="text-center">Explore Our Events</h2>
