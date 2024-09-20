@@ -29,8 +29,10 @@ Route::get('/event-details', function () {
   return view('eventDetails');
 })->name('eventDetails');
 
-Route::get('/events/{event}', [UserSideController::class, 'showEventDetails'])->name('event.details');
+Route::get('/event/{event}', [UserSideController::class, 'showEventDetails'])->name('event.details');
 
+// Route::get('/events/category/{category}', [HomeController::class, 'indexing'])->name('events.category');
+Route::get('/events/category/{category}', [HomeController::class, 'indexing'])->name('events.category');
 
 // Event page
 Route::get('/events', function () {
@@ -103,11 +105,8 @@ Route::prefix('organizer')->middleware(['auth', 'role:2', 'checkActive'])->group
 Route::prefix('user')->middleware(['auth', 'role:3', 'checkActive'])->group(function () {
   // Dashboard Route
   Route::get('dashboard', [UserSideController::class, 'dashboard'])->name('user.dashboard');
-
   // Show Booking Form (GET)
-  Route::get('/events/{event}/book', [UserSideController::class, 'showBookingForm'])->name('user.book');
-
-  // Handle Booking Submission (POST)
+  Route::get('/event/book/{event}', [UserSideController::class, 'showBookingForm'])->name('user.book');
   Route::post('/events/{event}/book', [UserSideController::class, 'book'])->name('events.book');
   Route::get('/user/booked-events', [UserSideController::class, 'showBookedEvents'])->name('user.booked.events')->middleware('auth');
 });

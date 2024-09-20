@@ -175,6 +175,7 @@
               <div class="card-footer">
                 @if ($event->id)
                   <a href="{{ route('user.book', ['event' => $event->id]) }}" class="btn btn-primary">Book Event</a>
+
                   <a href="{{ route('event.details', ['event' => $event->id]) }}" class="btn btn-secondary">View
                     Details</a>
                 @else
@@ -202,7 +203,7 @@
       <div class="row mt-4">
         @foreach ($categories as $category)
           <div class="col-md-4 mb-4">
-            <a href="{{ route('events', ['category' => $category->id]) }}" class="text-decoration-none">
+            <a href="{{ route('events.category', $category->id) }}" class="text-decoration-none">
               <div class="card category-card h-100">
                 @php
                   $imageUrl = $category->image ? asset('storage/categories/' . $category->image) : 'default-image-url';
@@ -219,6 +220,8 @@
         @endforeach
       </div>
     </div>
+
+
   </div>
 
   <script>
