@@ -184,6 +184,7 @@
                 <p class="text-center">No events available today or upcoming. Please check back later!</p>
               </div>
             @endforelse
+            <a href="{{ route('user.booked.events') }}" class="btn btn-primary">Booked Events</a>
           </div>
         </div>
 

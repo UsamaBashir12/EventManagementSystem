@@ -51,7 +51,7 @@
         <ul class="list-group booking-list">
           @foreach ($bookings as $booking)
             <li class="list-group-item">
-              {{ $booking->user->name }}: ${{ number_format($booking->total_price, 2) }}
+              {{ $booking->user_id }}: ${{ number_format($booking->total_price, 2) }}
             </li>
           @endforeach
         </ul>
