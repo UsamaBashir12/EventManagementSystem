@@ -162,7 +162,8 @@
           <div class="col-md-4 mb-4">
             <div class="card h-100">
               <div class="card-header">
-                <img class="w-100" src="{{ $event->image ? asset('storage/' . $event->image) : asset('images/default_image.png') }}"
+                <img class="w-100"
+                  src="{{ $event->image ? asset('storage/' . $event->image) : asset('images/default_image.png') }}"
                   alt="{{ $event->title }}">
               </div>
               <div class="card-body">
@@ -188,6 +189,10 @@
             <p class="text-center">No events available today or upcoming. Please check back later!</p>
           </div>
         @endforelse
+        <!-- Booked Events Button -->
+        @auth
+          <a href="{{ route('user.booked.events') }}" class="btn btn-primary">Booked Events</a>
+        @endauth
       </div>
     </div>
 

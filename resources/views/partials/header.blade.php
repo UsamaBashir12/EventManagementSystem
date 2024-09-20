@@ -6,7 +6,7 @@
   <div class="container">
     <!-- Logo on the left side -->
     <a class="navbar-brand" href="{{ route('home') }}">
-      <img src="path/to/logo.png" alt="Logo" style="height: 40px;"> <!-- Add your logo path -->
+      <img src="{{ asset('images/logo.jpg') }}" alt="Logo" style="height: 40px;"> <!-- Add your logo path -->
     </a>
 
     <!-- Toggler for mobile view -->
